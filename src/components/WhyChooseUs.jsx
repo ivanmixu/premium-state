@@ -107,12 +107,12 @@ const WhyChooseUs = () => {
     switch (advantage.id) {
       case 1:
         return (
-          <div className="grid grid-cols-2 gap-8">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="space-y-6 md:space-y-8">
               <div className="space-y-4">
                 {advantage.expertise.map((item, idx) => (
                   <div key={idx} className="space-y-2">
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs md:text-sm">
                       <span className="text-gray-400">{item.area}</span>
                       <span className="text-white">{item.level}%</span>
                     </div>
@@ -128,17 +128,17 @@ const WhyChooseUs = () => {
                 ))}
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {advantage.achievements.map((achievement, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.2 }}
-                  className="bg-white/5 backdrop-blur-sm p-6 border border-white/10"
+                  className="bg-white/5 backdrop-blur-sm p-4 md:p-6 border border-white/10"
                 >
-                  <div className="text-3xl font-light mb-2">{achievement.value}</div>
-                  <div className="text-sm text-gray-400">{achievement.label}</div>
+                  <div className="text-xl md:text-3xl font-light mb-2">{achievement.value}</div>
+                  <div className="text-xs md:text-sm text-gray-400">{achievement.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -147,8 +147,8 @@ const WhyChooseUs = () => {
       
       case 2:
         return (
-          <div className="grid grid-cols-2 gap-8">
-            <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="space-y-4 md:space-y-6">
               {advantage.technologies.map((tech, idx) => (
                 <motion.div
                   key={idx}
@@ -158,8 +158,8 @@ const WhyChooseUs = () => {
                   className="relative"
                 >
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm text-gray-400">{tech.name}</span>
-                    <span className="text-sm text-white">{tech.percentage}%</span>
+                    <span className="text-xs md:text-sm text-gray-400">{tech.name}</span>
+                    <span className="text-xs md:text-sm text-white">{tech.percentage}%</span>
                   </div>
                   <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                     <motion.div
@@ -172,17 +172,17 @@ const WhyChooseUs = () => {
                 </motion.div>
               ))}
             </div>
-            <div className="grid grid-rows-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {advantage.metrics.map((metric, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: idx * 0.2 }}
-                  className="bg-white/5 backdrop-blur-sm p-6 border border-white/10 flex items-center justify-between"
+                  className="bg-white/5 backdrop-blur-sm p-4 md:p-6 border border-white/10 flex flex-col lg:flex-row items-center justify-between space-y-2 lg:space-y-0"
                 >
-                  <span className="text-3xl font-light">{metric.value}</span>
-                  <span className="text-sm text-gray-400">{metric.label}</span>
+                  <span className="text-xl md:text-3xl font-light">{metric.value}</span>
+                  <span className="text-xs md:text-sm text-gray-400">{metric.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -191,36 +191,36 @@ const WhyChooseUs = () => {
 
       case 3:
         return (
-          <div className="grid grid-cols-2 gap-8">
-            <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="space-y-4 md:space-y-6">
               {advantage.awards.map((award, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.2 }}
-                  className="group flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20"
+                  className="group flex items-center space-x-4 p-3 md:p-4 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20"
                 >
-                  <div className="text-2xl font-light text-white/40 group-hover:text-white/60 transition-colors duration-300">
+                  <div className="text-xl md:text-2xl font-light text-white/40 group-hover:text-white/60 transition-colors duration-300">
                     {award.year}
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm text-white">{award.award}</div>
+                    <div className="text-xs md:text-sm text-white">{award.award}</div>
                   </div>
                 </motion.div>
               ))}
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {advantage.certifications.map((cert, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.2 }}
-                  className="flex items-center justify-between p-4 bg-white/5 backdrop-blur-sm border border-white/10"
+                  className="flex items-center justify-between p-3 md:p-4 bg-white/5 backdrop-blur-sm border border-white/10"
                 >
-                  <span className="text-lg font-light">{cert.name}</span>
-                  <span className="text-sm text-green-400">{cert.status}</span>
+                  <span className="text-base md:text-lg font-light">{cert.name}</span>
+                  <span className="text-xs md:text-sm text-green-400">{cert.status}</span>
                 </motion.div>
               ))}
             </div>
@@ -233,11 +233,11 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative bg-black text-white py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black text-white py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
-        <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
+        <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5 hidden md:block"></div>
+        <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5 hidden md:block"></div>
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -249,12 +249,12 @@ const WhyChooseUs = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-8"></div>
-          <h2 className="section-title text-5xl md:text-6xl font-light tracking-wider mb-6">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20">
+          <div className="w-16 md:w-24 h-[1px] bg-white/20 mx-auto mb-6 md:mb-8"></div>
+          <h2 className="section-title text-4xl sm:text-5xl md:text-6xl font-light tracking-wider mb-4 md:mb-6">
             Why Choose Us
           </h2>
-          <p className="text-gray-400 text-xl font-light max-w-3xl mx-auto">
+          <p className="text-gray-400 text-base md:text-xl font-light max-w-3xl mx-auto">
             Setting new standards in real estate investment through expertise, 
             technology, and unwavering commitment to excellence.
           </p>
@@ -262,18 +262,18 @@ const WhyChooseUs = () => {
 
         {/* Main Content */}
         <div className="relative">
-          {/* Navigation */}
-          <div className="advantage-navigation flex justify-center mb-16 relative">
-            <div className="flex space-x-8">
+          {/* Navigation - Scrollable on mobile */}
+          <div className="advantage-navigation overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 mb-8 md:mb-16">
+            <div className="flex space-x-4 md:space-x-8 min-w-max md:min-w-0 md:justify-center">
               {advantages.map((advantage, index) => (
                 <button
                   key={advantage.id}
                   onClick={() => setActiveAdvantage(index)}
-                  className={`group relative px-6 py-3 transition-all duration-300 ${
+                  className={`group relative px-4 md:px-6 py-2 md:py-3 transition-all duration-300 whitespace-nowrap ${
                     activeAdvantage === index ? 'text-white' : 'text-gray-500'
                   }`}
                 >
-                  <span className="relative z-10 text-sm tracking-wider">
+                  <span className="relative z-10 text-xs md:text-sm tracking-wider">
                     {advantage.title}
                   </span>
                   {activeAdvantage === index && (
@@ -298,14 +298,14 @@ const WhyChooseUs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-12"
+                className="space-y-8 md:space-y-12"
               >
                 {/* Advantage Header */}
-                <div className="text-center mb-12">
-                  <h3 className="text-3xl font-light mb-4">
+                <div className="text-center mb-8 md:mb-12">
+                  <h3 className="text-2xl md:text-3xl font-light mb-3 md:mb-4">
                     {advantages[activeAdvantage].shortDesc}
                   </h3>
-                  <p className="text-gray-400 max-w-3xl mx-auto">
+                  <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto px-4">
                     {advantages[activeAdvantage].description}
                   </p>
                 </div>

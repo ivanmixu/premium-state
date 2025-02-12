@@ -83,7 +83,7 @@ const SuccessStories = () => {
         project => activeCategory === 'all' || project.category === activeCategory
     );
 
-    const projectsPerPage = 3;
+    const projectsPerPage = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
     const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
     const nextPage = () => {
@@ -100,10 +100,10 @@ const SuccessStories = () => {
     );
 
     return (
-        <section className="bg-black text-white py-24 px-4 md:px-12 relative overflow-hidden">
-            {/* Fondo geométrico */}
+        <section className="bg-black text-white py-12 sm:py-16 md:py-24 px-4 md:px-12 relative overflow-hidden">
+            {/* Background elements */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* Líneas diagonales */}
+                {/* Diagonal lines */}
                 {[...Array(20)].map((_, i) => (
                     <div
                         key={i}
@@ -111,56 +111,58 @@ const SuccessStories = () => {
                         style={{ top: `${i * 10}%` }}
                     />
                 ))}
-                {/* Líneas verticales */}
-                <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
-                <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
-                {/* Círculo decorativo */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-b from-white/5 to-transparent rounded-full blur-3xl -mr-48 -mt-48"></div>
+                {/* Vertical lines */}
+                <div className="hidden md:block absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
+                <div className="hidden md:block absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
+                {/* Decorative circle */}
+                <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-gradient-to-b from-white/5 to-transparent rounded-full blur-3xl -mr-24 md:-mr-48 -mt-24 md:-mt-48"></div>
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                {/* Header */}
-                <div className="mb-16">
-                    <div className="w-24 h-[1px] bg-white/20 mb-8"></div>
-                    <h2 className="text-6xl font-extralight tracking-tight mb-6">
+                {/* Header - Responsive typography */}
+                <div className="mb-8 md:mb-16">
+                    <div className="w-16 md:w-24 h-[1px] bg-white/20 mb-6 md:mb-8"></div>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-extralight tracking-tight mb-4 md:mb-6">
                         Investment Success Stories
                     </h2>
-                    <p className="text-neutral-400 text-xl max-w-3xl">
+                    <p className="text-lg md:text-xl text-neutral-400 max-w-3xl">
                         Transformative investments that drive sustainable growth, create value, and 
                         deliver exceptional returns across diverse real estate sectors.
                     </p>
                 </div>
 
-                {/* Category Navigation */}
-                <div className="flex space-x-8 mb-16">
-                    {categories.map((cat) => (
-                        <motion.button
-                            key={cat.id}
-                            onClick={() => {
-                                setActiveCategory(cat.id);
-                                setCurrentPage(0);
-                            }}
-                            className={`
-                                text-sm tracking-wider relative py-2
-                                ${activeCategory === cat.id 
-                                    ? 'text-white' 
-                                    : 'text-neutral-500 hover:text-neutral-300'
-                                }
-                            `}
-                        >
-                            {cat.label}
-                            {activeCategory === cat.id && (
-                                <motion.div
-                                    layoutId="categoryUnderline"
-                                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white"
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                />
-                            )}
-                        </motion.button>
-                    ))}
+                {/* Category Navigation - Scrollable on mobile */}
+                <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 mb-8 md:mb-16">
+                    <div className="flex space-x-4 md:space-x-8 min-w-max md:min-w-0">
+                        {categories.map((cat) => (
+                            <motion.button
+                                key={cat.id}
+                                onClick={() => {
+                                    setActiveCategory(cat.id);
+                                    setCurrentPage(0);
+                                }}
+                                className={`
+                                    text-xs md:text-sm tracking-wider relative py-2 whitespace-nowrap
+                                    ${activeCategory === cat.id 
+                                        ? 'text-white' 
+                                        : 'text-neutral-500 hover:text-neutral-300'
+                                    }
+                                `}
+                            >
+                                {cat.label}
+                                {activeCategory === cat.id && (
+                                    <motion.div
+                                        layoutId="categoryUnderline"
+                                        className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                            </motion.button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Projects Grid */}
+                {/* Projects Grid - Responsive columns */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`${activeCategory}-${currentPage}`}
@@ -168,7 +170,7 @@ const SuccessStories = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5 }}
-                        className="grid grid-cols-3 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                     >
                         {displayedProjects.map((project, index) => (
                             <motion.div 
@@ -179,11 +181,11 @@ const SuccessStories = () => {
                                     y: 0,
                                     transition: { delay: index * 0.1 }
                                 }}
-                                className="group bg-neutral-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-300"
+                                className="group bg-neutral-900/50 backdrop-blur-sm rounded-lg md:rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-300"
                             >
                                 {/* Image Container */}
                                 <div className="relative overflow-hidden">
-                                    <div className="relative h-[300px] overflow-hidden">
+                                    <div className="relative h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden">
                                         <img
                                             src={project.image}
                                             alt={project.title}
@@ -191,7 +193,7 @@ const SuccessStories = () => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     </div>
-                                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
+                                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5 text-sm">
                                         <span className="text-green-400">
                                             ROI {project.roi}
                                         </span>
@@ -199,33 +201,33 @@ const SuccessStories = () => {
                                 </div>
 
                                 {/* Project Details */}
-                                <div className="p-6">
+                                <div className="p-4 sm:p-5 md:p-6">
                                     <div className="mb-4">
-                                        <h3 className="text-2xl font-light mb-2">{project.title}</h3>
-                                        <p className="text-neutral-400">{project.location}</p>
+                                        <h3 className="text-xl md:text-2xl font-light mb-2">{project.title}</h3>
+                                        <p className="text-sm md:text-base text-neutral-400">{project.location}</p>
                                     </div>
 
-                                    <div className="grid grid-cols-3 gap-4 border-t border-neutral-800 pt-6">
+                                    <div className="grid grid-cols-3 gap-3 md:gap-4 border-t border-neutral-800 pt-4 md:pt-6">
                                         {project.metrics.map((metric, index) => (
                                             <div key={index} className="text-center">
-                                                <span className="block text-xs text-neutral-500 uppercase mb-1">
+                                                <span className="block text-[10px] md:text-xs text-neutral-500 uppercase mb-1">
                                                     {metric.label}
                                                 </span>
-                                                <span className="text-lg font-light">
+                                                <span className="text-sm md:text-lg font-light">
                                                     {metric.value}
                                                 </span>
                                             </div>
                                         ))}
                                     </div>
 
-                                    <div className="mt-6 flex justify-between items-center border-t border-neutral-800 pt-4">
+                                    <div className="mt-4 md:mt-6 flex justify-between items-center border-t border-neutral-800 pt-4">
                                         <div>
-                                            <span className="text-xs text-neutral-500 block mb-1">Total Investment</span>
-                                            <span className="text-xl font-light">{project.totalInvestment}</span>
+                                            <span className="text-[10px] md:text-xs text-neutral-500 block mb-1">Investment</span>
+                                            <span className="text-lg md:text-xl font-light">{project.totalInvestment}</span>
                                         </div>
                                         <div>
-                                            <span className="text-xs text-neutral-500 block mb-1">Investment Period</span>
-                                            <span className="text-xl font-light">{project.investmentPeriod}</span>
+                                            <span className="text-[10px] md:text-xs text-neutral-500 block mb-1">Period</span>
+                                            <span className="text-lg md:text-xl font-light">{project.investmentPeriod}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -234,27 +236,27 @@ const SuccessStories = () => {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Controls */}
-                <div className="flex justify-between mt-16">
+                {/* Navigation Controls - Adjusted for mobile */}
+                <div className="flex justify-between mt-8 md:mt-16">
                     <motion.button
                         onClick={prevPage}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group flex items-center space-x-4 relative px-6 py-3"
+                        className="group flex items-center space-x-2 md:space-x-4 relative px-4 md:px-6 py-2 md:py-3"
                     >
                         <div className="absolute inset-0 bg-white/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
-                        <div className="h-[1px] w-10 bg-white/20 group-hover:bg-white/50 transition-colors duration-300"></div>
-                        <span className="relative z-10 text-sm tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-300">PREV</span>
+                        <div className="h-[1px] w-6 md:w-10 bg-white/20 group-hover:bg-white/50 transition-colors duration-300"></div>
+                        <span className="relative z-10 text-xs md:text-sm tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-300">PREV</span>
                     </motion.button>
                     <motion.button
                         onClick={nextPage}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group flex items-center space-x-4 relative px-6 py-3"
+                        className="group flex items-center space-x-2 md:space-x-4 relative px-4 md:px-6 py-2 md:py-3"
                     >
                         <div className="absolute inset-0 bg-white/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                        <span className="relative z-10 text-sm tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-300">NEXT</span>
-                        <div className="h-[1px] w-10 bg-white/20 group-hover:bg-white/50 transition-colors duration-300"></div>
+                        <span className="relative z-10 text-xs md:text-sm tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-300">NEXT</span>
+                        <div className="h-[1px] w-6 md:w-10 bg-white/20 group-hover:bg-white/50 transition-colors duration-300"></div>
                     </motion.button>
                 </div>
             </div>

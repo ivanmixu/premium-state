@@ -84,46 +84,46 @@ const ContactSection = () => {
   };
 
   const renderContactForm = () => (
-    <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
-      <div className="col-span-2 md:col-span-1">
-        <label className="block text-sm text-gray-400 mb-2">Full Name</label>
+    <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div className="col-span-1">
+        <label className="block text-xs md:text-sm text-gray-400 mb-2">Full Name</label>
         <input
           type="text"
-          className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
+          className="w-full bg-white/5 border border-white/10 rounded-none px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
           required
         />
       </div>
-      <div className="col-span-2 md:col-span-1">
-        <label className="block text-sm text-gray-400 mb-2">Email Address</label>
+      <div className="col-span-1">
+        <label className="block text-xs md:text-sm text-gray-400 mb-2">Email Address</label>
         <input
           type="email"
-          className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
+          className="w-full bg-white/5 border border-white/10 rounded-none px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
           required
         />
       </div>
       <div className="col-span-2">
-        <label className="block text-sm text-gray-400 mb-2">Investment Interest</label>
-        <select className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 text-white focus:border-white/30 focus:outline-none transition-colors duration-300">
+        <label className="block text-xs md:text-sm text-gray-400 mb-2">Investment Interest</label>
+        <select className="w-full bg-white/5 border border-white/10 rounded-none px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-white focus:border-white/30 focus:outline-none transition-colors duration-300">
           <option value="residential">Residential Properties</option>
           <option value="commercial">Commercial Properties</option>
           <option value="mixed">Mixed-Use Development</option>
         </select>
       </div>
       <div className="col-span-2">
-        <label className="block text-sm text-gray-400 mb-2">Message</label>
+        <label className="block text-xs md:text-sm text-gray-400 mb-2">Message</label>
         <textarea
           rows="4"
-          className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
+          className="w-full bg-white/5 border border-white/10 rounded-none px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-white focus:border-white/30 focus:outline-none transition-colors duration-300"
           required
         ></textarea>
       </div>
       <div className="col-span-2">
         <button
           type="submit"
-          className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden"
+          className="w-full md:w-auto group relative inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 overflow-hidden"
         >
           <div className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-          <span className="relative z-10 text-sm tracking-[0.2em] text-white group-hover:text-black transition-colors duration-300">
+          <span className="relative z-10 text-xs md:text-sm tracking-[0.2em] text-white group-hover:text-black transition-colors duration-300">
             SEND MESSAGE
           </span>
         </button>
@@ -132,16 +132,16 @@ const ContactSection = () => {
   );
 
   const renderScheduleMeeting = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       <div className="space-y-6">
         <div>
-          <h3 className="text-xl font-light mb-4">Select Date</h3>
-          <div className="grid grid-cols-7 gap-2">
+          <h3 className="text-lg md:text-xl font-light mb-4">Select Date</h3>
+          <div className="grid grid-cols-7 gap-1 md:gap-2">
             {[...Array(31)].map((_, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedDate(i + 1)}
-                className={`p-2 text-sm border ${
+                className={`p-1.5 md:p-2 text-xs md:text-sm border ${
                   selectedDate === i + 1
                     ? 'border-white text-white'
                     : 'border-white/10 text-gray-400 hover:border-white/30'
@@ -153,13 +153,13 @@ const ContactSection = () => {
           </div>
         </div>
         <div>
-          <h3 className="text-xl font-light mb-4">Select Time</h3>
-          <div className="grid grid-cols-3 gap-3">
+          <h3 className="text-lg md:text-xl font-light mb-4">Select Time</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3">
             {availableTimes.map((time) => (
               <button
                 key={time}
                 onClick={() => setSelectedTime(time)}
-                className={`p-3 text-sm border ${
+                className={`p-2 md:p-3 text-xs md:text-sm border ${
                   selectedTime === time
                     ? 'border-white text-white'
                     : 'border-white/10 text-gray-400 hover:border-white/30'
@@ -171,30 +171,30 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-      <div className="space-y-6">
-        <div className="bg-white/5 border border-white/10 p-6">
-          <h3 className="text-xl font-light mb-4">Meeting Details</h3>
+      <div className="space-y-4 md:space-y-6">
+        <div className="bg-white/5 border border-white/10 p-4 md:p-6">
+          <h3 className="text-lg md:text-xl font-light mb-4">Meeting Details</h3>
           <div className="space-y-4">
             {selectedDate && selectedTime ? (
               <>
-                <div className="flex items-center space-x-3 text-gray-400">
-                  <Calendar className="w-5 h-5" />
+                <div className="flex items-center space-x-3 text-gray-400 text-sm md:text-base">
+                  <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                   <span>Date: {selectedDate} February, 2025</span>
                 </div>
-                <div className="flex items-center space-x-3 text-gray-400">
-                  <Clock className="w-5 h-5" />
+                <div className="flex items-center space-x-3 text-gray-400 text-sm md:text-base">
+                  <Clock className="w-4 h-4 md:w-5 md:h-5" />
                   <span>Time: {selectedTime}</span>
                 </div>
               </>
             ) : (
-              <p className="text-gray-400">Please select a date and time for your meeting.</p>
+              <p className="text-gray-400 text-sm md:text-base">Please select a date and time for your meeting.</p>
             )}
           </div>
         </div>
         {selectedDate && selectedTime && (
-          <button className="w-full group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden">
+          <button className="w-full group relative inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 overflow-hidden">
             <div className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-            <span className="relative z-10 text-sm tracking-[0.2em] text-white group-hover:text-black transition-colors duration-300">
+            <span className="relative z-10 text-xs md:text-sm tracking-[0.2em] text-white group-hover:text-black transition-colors duration-300">
               CONFIRM MEETING
             </span>
           </button>
@@ -204,27 +204,27 @@ const ContactSection = () => {
   );
 
   const renderLocations = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
       {locations.map((location, index) => (
         <motion.div
           key={location.city}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.2 }}
-          className="group relative bg-white/5 border border-white/10 p-8 hover:border-white/30 transition-colors duration-300"
+          className="group relative bg-white/5 border border-white/10 p-4 md:p-8 hover:border-white/30 transition-colors duration-300"
         >
-          <h3 className="text-2xl font-light mb-6">{location.city}</h3>
-          <div className="space-y-4">
-            <div className="flex items-start space-x-3 text-gray-400">
-              <MapPin className="w-5 h-5 mt-1" />
+          <h3 className="text-xl md:text-2xl font-light mb-4 md:mb-6">{location.city}</h3>
+          <div className="space-y-3 md:space-y-4">
+            <div className="flex items-start space-x-3 text-gray-400 text-sm md:text-base">
+              <MapPin className="w-4 h-4 md:w-5 md:h-5 mt-1" />
               <span>{location.address}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-400">
-              <Phone className="w-5 h-5" />
+            <div className="flex items-center space-x-3 text-gray-400 text-sm md:text-base">
+              <Phone className="w-4 h-4 md:w-5 md:h-5" />
               <span>{location.phone}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-400">
-              <Mail className="w-5 h-5" />
+            <div className="flex items-center space-x-3 text-gray-400 text-sm md:text-base">
+              <Mail className="w-4 h-4 md:w-5 md:h-5" />
               <span>{location.email}</span>
             </div>
           </div>
@@ -235,11 +235,11 @@ const ContactSection = () => {
   );
 
   return (
-    <section ref={sectionRef} className="relative bg-black text-white py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black text-white py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
-        <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5"></div>
+        <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-white/5 hidden md:block"></div>
+        <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-white/5 hidden md:block"></div>
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -251,34 +251,34 @@ const ContactSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="w-24 h-[1px] bg-white/20 mx-auto mb-8"></div>
-          <h2 className="section-title text-5xl md:text-6xl font-light tracking-wider mb-6">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20">
+          <div className="w-16 md:w-24 h-[1px] bg-white/20 mx-auto mb-6 md:mb-8"></div>
+          <h2 className="section-title text-4xl sm:text-5xl md:text-6xl font-light tracking-wider mb-4 md:mb-6">
             Contact Us
           </h2>
-          <p className="text-gray-400 text-xl font-light max-w-3xl mx-auto">
+          <p className="text-gray-400 text-base md:text-xl font-light max-w-3xl mx-auto">
             Begin your premium investment journey today. Our team of experts is ready to guide you 
             through every step of the process.
           </p>
         </div>
 
-        {/* Tabs Navigation */}
-        <div className="tabs-wrapper flex justify-center mb-16">
-          <div className="inline-flex border border-white/10">
+        {/* Tabs Navigation - Scrollable on mobile */}
+        <div className="tabs-wrapper overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 mb-8 md:mb-16">
+          <div className="inline-flex border border-white/10 min-w-max md:min-w-0 md:w-auto md:flex md:justify-center">
             {[
               { id: 'contact', icon: MessageSquare, label: 'CONTACT' },
-              { id: 'schedule', icon: Calendar, label: 'SCHEDULE MEETING' },
+              { id: 'schedule', icon: Calendar, label: 'SCHEDULE' },
               { id: 'locations', icon: MapPin, label: 'LOCATIONS' }
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`group relative flex items-center space-x-2 px-8 py-4 ${
+                className={`group relative flex items-center space-x-2 px-4 md:px-8 py-3 md:py-4 ${
                   activeTab === tab.id ? 'text-white bg-white/5' : 'text-gray-400'
                 }`}
               >
                 <tab.icon className="w-4 h-4" />
-                <span className="text-sm tracking-wider">{tab.label}</span>
+                <span className="text-xs md:text-sm tracking-wider whitespace-nowrap">{tab.label}</span>
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTab"
