@@ -3,8 +3,7 @@
 @tailwind utilities;
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&display=swap');
-
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300,200&display=swap');
 
 @keyframes moveRight {
     0% {
@@ -13,10 +12,25 @@
     100% {
       transform: translateX(100%) rotate(-35deg);
     }
-  }
-
-/* Resto de tus estilos personalizados aquí */
-body {
-  font-family: 'DM Sans', sans-serif;
 }
 
+/* Base styles */
+body {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-wide;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply font-extralight tracking-wider;
+  }
+  
+  .display-text {
+    @apply font-light tracking-wide;
+  }
+}
